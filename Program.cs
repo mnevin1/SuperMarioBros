@@ -20,6 +20,21 @@ else
     List<int> characterFirstAppearance = [];
     List<int> characterYearCreated = [];
 
+    try
+    {
+        StreamReader sr = new(file);
+        sr.ReadLine();
+        while (!sr.EndOfStream)
+        {
+            string line = sr.ReadLine();
+            Console.WriteLine(line);
+        }
+        sr.Close();
+    }
+    catch (Exception ex)
+    {
+        logger.Error(ex, "Error reading file: {File}", file);
+    }
 
         string? choice;
     do
