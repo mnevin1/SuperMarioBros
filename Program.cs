@@ -12,6 +12,15 @@ if (!File.Exists(file))
 }
 else
 {
+
+    List<UInt64> characterIds = [];
+    List<string> characterNames = [];
+    List<string> characterDescriptions = [];
+    List<string> characterSpecies = [];
+    List<int> characterFirstAppearance = [];
+    List<int> characterYearCreated = [];
+
+
         string? choice;
     do
     {
