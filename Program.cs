@@ -61,7 +61,17 @@ else
 
         if (choice == "1")
         {
-            // Add Character
+            Console.WriteLine("Enter character name: ");
+            string? name = Console.ReadLine();
+            if (!string.IsNullOrEmpty(name))
+            {
+                UInt64 id = characterIds.Max() + 1;
+                Console.WriteLine($"{id}, {name}");
+            }
+            else
+            {
+                logger.Error("You must enter a name");
+            }
         }
         else if (choice == "2")
         {
