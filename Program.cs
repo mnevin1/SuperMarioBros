@@ -17,7 +17,7 @@ else
 
     List<UInt64> characterIds = [];
     List<string> characterNames = [];
-    List<string> characterDescriptions = [];
+    List<string?> characterDescriptions = [];
     List<string> characterSpecies = [];
     List<string> characterFirstAppearance = [];
     List<int> characterYearCreated = [];
@@ -76,7 +76,13 @@ else
                     UInt64 ID = characterIds.Max() + 1;
                     Console.WriteLine("Enter description: ");
                     string? description = Console.ReadLine();
-                    Console.WriteLine($"{ID},{name},{description}");
+                    StreamWriter sw = new(file, true);
+                    sw.WriteLine($"{ID},{name},{description}");
+                    sw.Close();
+                    characterIds.Add(ID);
+                    characterNames.Add(name);
+                    characterDescriptions.Add(description);
+                    logger.Info($"Character id {ID} added");
                 }
             }
             else
