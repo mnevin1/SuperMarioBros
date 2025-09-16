@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Design.Serialization;
+using System.Reflection.Metadata;
 using NLog;
 string path = Directory.GetCurrentDirectory() + "//nlog.config";
 
@@ -65,14 +66,23 @@ else
             string? name = Console.ReadLine();
             if (!string.IsNullOrEmpty(name))
             {
-                UInt64 id = characterIds.Max() + 1;
-                Console.WriteLine($"{id}, {name}");
+                List<string> LowerCaseNames = characterNames.ConvertAll(n => n.ToLower());
+                if (LowerCaseNames.Contains(name.ToLower()))
+                {
+                    logger.Info($"Duplicate name {name}");
+                }
+                else
+                {
+                    UInt64 ID = characterIds.Max() + 1;
+                    Console.WriteLine($"{ID}{name}: ");
+                }
             }
             else
             {
                 logger.Error("You must enter a name");
             }
         }
+
         else if (choice == "2")
         {
             for (int i = 0; i < characterIds.Count; i++)
