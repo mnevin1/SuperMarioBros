@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using System.ComponentModel.Design.Serialization;
+using NLog;
 string path = Directory.GetCurrentDirectory() + "//nlog.config";
 
 var logger = LogManager.Setup().LoadConfigurationFromFile(path).GetCurrentClassLogger();
@@ -23,11 +24,21 @@ else
     try
     {
         StreamReader sr = new(file);
+        // first line contains column headers
         sr.ReadLine();
         while (!sr.EndOfStream)
         {
-            string line = sr.ReadLine();
-            Console.WriteLine(line);
+            string? line = sr.ReadLine();
+            if (line is not null)
+            {
+                string[] characterDetails = line.Split(',');
+                characterIds.Add(UInt64.Parse(characterDetails[0]));
+                characterNames.Add(characterDetails[1]);
+                characterDescriptions.Add(characterDetails[2]);
+                characterSpecies.Add(characterDetails[3]);
+                characterFirstAppearance.Add(int.Parse(characterDetails[4]));
+                characterYearCreated.Add(int.Parse(characterDetails[5]));
+            }
         }
         sr.Close();
     }
