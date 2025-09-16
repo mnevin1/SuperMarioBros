@@ -74,7 +74,9 @@ else
                 else
                 {
                     UInt64 ID = characterIds.Max() + 1;
-                    Console.WriteLine($"{ID}{name}: ");
+                    Console.WriteLine("Enter description: ");
+                    string? description = Console.ReadLine();
+                    Console.WriteLine($"{ID},{name},{description}");
                 }
             }
             else
