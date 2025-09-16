@@ -5,6 +5,14 @@ var logger = LogManager.Setup().LoadConfigurationFromFile(path).GetCurrentClassL
 
 logger.Info("Program started");
 
-Console.WriteLine("Hello, World!");
+string file = "mario.csv";
+if (!File.Exists(file))
+{
+    logger.Error("File does not exist: {file}", file);
+}
+else
+{
+    
+}
 
 logger.Info("program ended");
