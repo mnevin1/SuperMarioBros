@@ -18,7 +18,7 @@ else
     List<string> characterNames = [];
     List<string> characterDescriptions = [];
     List<string> characterSpecies = [];
-    List<int> characterFirstAppearance = [];
+    List<string> characterFirstAppearance = [];
     List<int> characterYearCreated = [];
 
     try
@@ -36,7 +36,7 @@ else
                 characterNames.Add(characterDetails[1]);
                 characterDescriptions.Add(characterDetails[2]);
                 characterSpecies.Add(characterDetails[3]);
-                characterFirstAppearance.Add(int.Parse(characterDetails[4]));
+                characterFirstAppearance.Add(characterDetails[4]);
                 characterYearCreated.Add(int.Parse(characterDetails[5]));
             }
         }
@@ -65,7 +65,16 @@ else
         }
         else if (choice == "2")
         {
-            // Display All Characters
+            for (int i = 0; i < characterIds.Count; i++)
+            {
+                Console.WriteLine($"ID: {characterIds[i]}");
+                Console.WriteLine($"Name: {characterNames[i]}");
+                Console.WriteLine($"Description: {characterDescriptions[i]}");
+                Console.WriteLine($"Species: {characterSpecies[i]}");
+                Console.WriteLine($"First Appearance: {characterFirstAppearance[i]}");
+                Console.WriteLine($"Year Created: {characterYearCreated[i]}");
+                Console.WriteLine();
+            }
         }
     } while (choice == "1" || choice == "2");    
 }
