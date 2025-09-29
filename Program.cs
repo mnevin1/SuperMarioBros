@@ -59,30 +59,31 @@ else
 
         if (choice == "1")
         {
+            Character character = new();
             Console.WriteLine("Enter character name: ");
-            string? name = Console.ReadLine();
-            if (!string.IsNullOrEmpty(name))
+            character.Name = Console.ReadLine() ?? string.Empty;
+            if (!string.IsNullOrEmpty(character.Name))
             {
-                List<string> LowerCaseNames = characterNames.ConvertAll(n => n.ToLower());
-                if (LowerCaseNames.Contains(name.ToLower()))
+                List<string> LowerCaseNames = characters.ConvertAll(character => character.Name.ToLower());
+                if (LowerCaseNames.Contains(character.Name.ToLower()))
                 {
-                    logger.Info($"Duplicate name {name}");
+                    logger.Info($"Duplicate name {character.Name}");
                 }
                 else
                 {
-                    UInt64 ID = characterIds.Max() + 1;
+                    character.Id = characters.Max(character => character.Id) + 1;
                     Console.WriteLine("Enter description: ");
-                    string? description = Console.ReadLine();
+                    character.Description = Console.ReadLine() ?? string.Empty;
                     Console.WriteLine("Enter species: ");
-                    string? species = Console.ReadLine();
+                    character.Species = Console.ReadLine() ?? string.Empty;
                     Console.WriteLine("Enter first appearance: ");
-                    string? firstAppearance = Console.ReadLine();
+                    character.FirstAppearance = Console.ReadLine() ?? string.Empty;
                     Console.WriteLine("Enter year created: ");
-                    int yearCreated = int.Parse(Console.ReadLine() ?? "0");
+                    character.YearCreated = int.Parse(Console.ReadLine() ?? "0");
                     StreamWriter sw = new(file, true);
-                    sw.WriteLine($"{ID},{name},{description},{species},{firstAppearance},{yearCreated}");
+                    sw.WriteLine($"{character.Id},{character.Name},{character.Description},{character.Species},{character.FirstAppearance},{character.YearCreated}");
                     sw.Close();
-                    logger.Info($"Character id {ID} added");
+                    logger.Info($"Character id {character.Id} added");
                 }
             }
             else
