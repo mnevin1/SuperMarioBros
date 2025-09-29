@@ -15,12 +15,7 @@ if (!File.Exists(file))
 else
 {
 
-    List<UInt64> characterIds = [];
-    List<string> characterNames = [];
-    List<string?> characterDescriptions = [];
-    List<string> characterSpecies = [];
-    List<string> characterFirstAppearance = [];
-    List<int> characterYearCreated = [];
+    List<Character> characters = [];
 
     try
     {
@@ -32,13 +27,15 @@ else
             string? line = sr.ReadLine();
             if (line is not null)
             {
+                Character character = new();
                 string[] characterDetails = line.Split(',');
-                characterIds.Add(UInt64.Parse(characterDetails[0]));
-                characterNames.Add(characterDetails[1]);
-                characterDescriptions.Add(characterDetails[2]);
-                characterSpecies.Add(characterDetails[3]);
-                characterFirstAppearance.Add(characterDetails[4]);
-                characterYearCreated.Add(int.Parse(characterDetails[5]));
+                character.Id = UInt64.Parse(characterDetails[0]);
+                character.Name = characterDetails[1] ?? string.Empty;
+                character.Description = characterDetails[2] ?? string.Empty;
+                character.Species = characterDetails[3] ?? string.Empty;
+                character.FirstAppearance = characterDetails[4] ?? string.Empty;
+                character.YearCreated = int.Parse(characterDetails[5]);
+                characters.Add(character);
             }
         }
         sr.Close();
