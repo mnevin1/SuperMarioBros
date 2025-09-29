@@ -45,7 +45,7 @@ else
     }
     catch (Exception ex)
     {
-        logger.Error(ex, "Error reading file: {File}", file);
+        logger.Error(ex.Message);
     }
 
         string? choice;
@@ -76,12 +76,15 @@ else
                     UInt64 ID = characterIds.Max() + 1;
                     Console.WriteLine("Enter description: ");
                     string? description = Console.ReadLine();
+                    Console.WriteLine("Enter species: ");
+                    string? species = Console.ReadLine();
+                    Console.WriteLine("Enter first appearance: ");
+                    string? firstAppearance = Console.ReadLine();
+                    Console.WriteLine("Enter year created: ");
+                    int yearCreated = int.Parse(Console.ReadLine() ?? "0");
                     StreamWriter sw = new(file, true);
-                    sw.WriteLine($"{ID},{name},{description}");
+                    sw.WriteLine($"{ID},{name},{description},{species},{firstAppearance},{yearCreated}");
                     sw.Close();
-                    characterIds.Add(ID);
-                    characterNames.Add(name);
-                    characterDescriptions.Add(description);
                     logger.Info($"Character id {ID} added");
                 }
             }
