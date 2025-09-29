@@ -94,15 +94,9 @@ else
 
         else if (choice == "2")
         {
-            for (int i = 0; i < characterIds.Count; i++)
+            foreach (Character character in characters)
             {
-                Console.WriteLine($"ID: {characterIds[i]}");
-                Console.WriteLine($"Name: {characterNames[i]}");
-                Console.WriteLine($"Description: {characterDescriptions[i]}");
-                Console.WriteLine($"Species: {characterSpecies[i]}");
-                Console.WriteLine($"First Appearance: {characterFirstAppearance[i]}");
-                Console.WriteLine($"Year Created: {characterYearCreated[i]}");
-                Console.WriteLine();
+                Console.WriteLine(character.Display());
             }
         }
     } while (choice == "1" || choice == "2");    
